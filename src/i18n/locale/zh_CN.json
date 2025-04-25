@@ -1,0 +1,26 @@
+{
+    "HOME": "主页",
+    "ASSISTANT": "助手",
+    "WHO_AM_I": "我是谁",
+    "BACKEND_DEVELOPER": "后端开发",
+    "GAME_LOVER": "玩家",
+    "ABOUT_ME": "关于",
+    "SELF_INTRODUCTION": "( . )( . )👀🧑",
+    "ACHIEVEMENT": "成就",
+    "CONTACT_ME": "联系我",
+    "RECHED": "达到",
+    "RANK_ON_PERFECTWORLD_AT": "段位 在完美世界竞技平台的",
+    "EMAIL": "邮箱",
+    "WEBSITE": "网站",
+
+    "USER": "用户",
+    "PLS_INPUT_USERNAME_AND_PASSWORD": "请输入用户名和密码",
+    "TOKEN_VALIDATION_FAILED": "令牌验证失败",
+    "USER_LOGIN_SUCCESS": "登录成功",
+    "USER_LOGIN_FAILED": "登录失败",
+    "USER_NOT_EXIST": "用户不存在",
+    "WRONG_PASSWORD": "密码错误",
+    "TOKEN_EXPIRED": "令牌过期",
+    "TOKEN_INVALID": "令牌无效"
+    
+}

@@ -1,0 +1,25 @@
+{
+    "HOME": "HOME",
+    "ASSISTANT": "ASSISTANT",
+    "WHO_AM_I": "WHO AM I",
+    "BACKEND_DEVELOPER": "BACKEND DEVELOPER",
+    "GAME_LOVER": "GAME LOVER",
+    "ABOUT_ME": "ABOUT ME",
+    "SELF_INTRODUCTION": "WORLD'S BEST BOOBA LOVER",
+    "ACHIEVEMENT": "ACHIEVEMENT",
+    "CONTACT_ME": "CONTACT ME",
+    "RECHED": "Reached",
+    "RANK_ON_PERFECTWORLD_AT": "RANK on PerfectWorld Arena at",
+    "EMAIL": "EMAIL",
+    "WEBSITE": "WEBSITE",
+
+    "USER": "USER",
+    "PLS_INPUT_USERNAME_AND_PASSWORD": "Please input username and password",
+    "TOKEN_VALIDATION_FAILED": "Token Validation Failed",
+    "USER_LOGIN_SUCCESS": "Login Success",
+    "USER_LOGIN_FAILED": "Login Failed",
+    "USER_NOT_EXIST": "User Not Exist",
+    "WRONG_PASSWORD": "Wrong Password",
+    "TOKEN_EXPIRED": "Token Expired",
+    "TOKEN_INVALID": "Token Invalid"
+}
