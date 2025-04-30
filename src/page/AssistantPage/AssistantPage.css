@@ -28,6 +28,13 @@
 }
 
 /* 用户发送的内容 */
+.markdown-body p{
+  white-space: pre-wrap;       /* 保留空白符并允许换行 */
+  word-wrap: break-word;       /* 允许长单词断行 */
+  overflow-wrap: break-word;   /* 现代浏览器的断行属性 */
+}
+
+/* 用户发送的内容 */
 .markdown-body-user p{
   margin: 0px;
 }

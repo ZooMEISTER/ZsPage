@@ -19,9 +19,10 @@ import './AssistantPage.css';
 
 // 可配置的模型列表
 const AVAILABLE_MODELS = [
-    { id: 'gpt-4o-mini', name: 'GPT-4o Mini' },
+    // { id: 'gpt-4o-mini', name: 'GPT-4o Mini' },
+    { id: 'deepseek-chat', name: 'DeepSeek-V3' },
+    { id: 'deepseek-reasoner', name: 'DeepSeek-R1' },
     { id: 'gpt-4o', name: 'GPT-4o' },
-    { id: 'gpt-3.5-turbo', name: 'GPT-3.5-Turbo' }
 ];
 
 const AssistantPage = () => {
@@ -52,7 +53,7 @@ const AssistantPage = () => {
     // 已登录用户名
     const [loggedInUsername, setLoggedInUsername] = useState('');
     // 选择的模型
-    const [selectedModel, setSelectedModel] = useState('gpt-4o-mini');
+    const [selectedModel, setSelectedModel] = useState(AVAILABLE_MODELS[0].id);
     // 输入框高度
     const [textFieldHeight, setTextFieldHeight] = useState(76); // 初始高度
     // 流式响应中的当前文本
@@ -249,11 +250,15 @@ const AssistantPage = () => {
         if (!inputMessageRef.current.trim() || !currentConversationId) return;
         
         const userMessage = { role: 'user', content: inputMessageRef.current };
-        setMessages(prev => [...prev, userMessage]);
+        const userInput = inputMessageRef.current; // 保存用户输入，以便在出错时恢复
+        
+        // 先清空输入框
         inputMessageRef.current = '';
         setHaveInputMessage(false);
         document.getElementById('inputMessageTextField').value = '';
-
+        
+        // 临时添加用户消息到界面
+        setMessages(prev => [...prev, userMessage]);
         
         try {
             setIsLoading(true);
@@ -274,11 +279,16 @@ const AssistantPage = () => {
                 } catch (error) {
                     // 创建对话失败，恢复消息列表
                     setMessages(prev => prev.slice(0, -1));
+                    // 恢复用户输入到输入框
+                    inputMessageRef.current = userInput;
+                    document.getElementById('inputMessageTextField').value = userInput;
+                    setHaveInputMessage(userInput.trim().length > 0);
                     setIsLoading(false);
                     return;
                 }
             }
             
+            setIsLoading(true);
             // 开始流式响应
             setIsStreaming(true);
             setStreamingResponse('');
@@ -369,6 +379,11 @@ const AssistantPage = () => {
                 }
             }
 
+            // 检查响应是否有效
+            if (!fullText.trim()) {
+                throw new Error('服务器返回了空响应');
+            }
+
             // 流式响应完成后，将完整响应添加到消息列表
             setMessages(prev => [...prev, {
                 role: 'assistant',
@@ -383,6 +398,15 @@ const AssistantPage = () => {
             setIsLoading(false);
         } catch (error) {
             console.error('发送消息失败:', error);
+            
+            // 移除临时添加的用户消息
+            setMessages(prev => prev.slice(0, -1));
+            
+            // 将用户输入回填到输入框
+            inputMessageRef.current = userInput;
+            document.getElementById('inputMessageTextField').value = userInput;
+            setHaveInputMessage(userInput.trim().length > 0);
+            
             setIsLoading(false);
             setIsStreaming(false);
             enqueueSnackbar(t("SEND_MESSAGE_FAILED"), { 
@@ -1208,7 +1232,7 @@ const AssistantPage = () => {
                             onKeyPress={handleKeyPress}
                             placeholder={isLoggedIn ? (currentConversationId ? t("INPUT_MESSAGE") : t("PLEASE_SELECT_OR_CREATE_NEW_CONVERSATION")) : t("PLEASE_LOGIN_FIRST")}
                             variant="outlined"
-                            disabled={isLoading || (!isLoggedIn || !currentConversationId)}
+                            disabled={isLoading || isStreaming || (!isLoggedIn || !currentConversationId)}
                             sx={{
                                 mr: 1,
                                 height: `${textFieldHeight}px`,
@@ -1241,7 +1265,7 @@ const AssistantPage = () => {
                             <FormControl 
                                 variant="outlined"
                                 size="small"
-                                disabled={isLoading || (!isLoggedIn || !currentConversationId)}
+                                disabled={isLoading || isStreaming || (!isLoggedIn || !currentConversationId)}
                                 sx={{
                                     width: '100%',
                                     height: '32px',
@@ -1284,6 +1308,28 @@ const AssistantPage = () => {
                                     label={t("MODEL")}
                                     value={selectedModel}
                                     onChange={(e) => setSelectedModel(e.target.value)}
+                                    MenuProps={{
+                                        anchorOrigin: {
+                                            vertical: 'top',
+                                            horizontal: 'left',
+                                        },
+                                        transformOrigin: {
+                                            vertical: 'bottom',
+                                            horizontal: 'left',
+                                        },
+                                        PaperProps: {
+                                            sx: {
+                                                backgroundColor: '#222',
+                                                color: '#FFF',
+                                                '& .MuiMenuItem-root:hover': {
+                                                    backgroundColor: '#333'
+                                                },
+                                                '& .MuiMenuItem-root.Mui-selected': {
+                                                    color: '#FF0000'
+                                                }
+                                            }
+                                        }
+                                    }}
                                 >
                                     {AVAILABLE_MODELS.map((model) => (
                                         <MenuItem key={model.id} value={model.id}>{model.name}</MenuItem>
