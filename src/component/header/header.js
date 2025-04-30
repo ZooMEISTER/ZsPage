@@ -23,13 +23,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { motion } from 'framer-motion';
 
 // 创建毛玻璃效果的AppBar（减轻效果）
-const GlassAppBar = styled(AppBar)(({ theme, trigger }) => ({
-  background: trigger ? 'rgba(255, 255, 255, 0.1)' : 'transparent', // 降低透明度
-  backdropFilter: trigger ? 'blur(5px)' : 'none', // 减少模糊程度
-  boxShadow: trigger ? '0 2px 15px rgba(0, 0, 0, 0.05)' : 'none', // 减轻阴影
-  borderBottom: trigger ? '1px solid rgba(255, 0, 0, 0.8)' : '1px solid rgba(255, 0, 0, 0)', // 红色边框，透明度变化
-  transition: 'all 0.3s ease-in-out',
-  color: '#fff'
+const GlassAppBar = styled(AppBar, {
+    shouldForwardProp: (prop) => prop !== 'trigger'
+})(({ theme, trigger }) => ({
+    background: trigger ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+    backdropFilter: trigger ? 'blur(5px)' : 'none',
+    boxShadow: trigger ? '0 2px 15px rgba(0, 0, 0, 0.05)' : 'none',
+    borderBottom: trigger ? '1px solid rgba(255, 0, 0, 0.8)' : '1px solid rgba(255, 0, 0, 0)',
+    transition: 'all 0.3s ease-in-out',
+    color: '#fff'
 }));
 
 // 创建动画Logo组件
@@ -126,10 +128,16 @@ const Header = () => {
 
     // 抽屉控制
     const toggleDrawer = (open) => (event) => {
-        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+        if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }
         setDrawerOpen(open);
+    };
+
+    // 导航并关闭抽屉
+    const handleNavigation = (path) => {
+        navigate(path);
+        setDrawerOpen(false);
     };
 
     // Logo动画变体
@@ -278,7 +286,7 @@ const Header = () => {
                                     button 
                                     key={item.title} 
                                     component="a"
-                                    onClick={() => navigate(item.link || item.LINK)}
+                                    onClick={() => handleNavigation(item.link || item.LINK)}
                                     sx={{ 
                                         borderBottom: '1px solid rgba(255,255,255,0.1)',
                                         py: 1.5

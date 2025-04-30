@@ -1,0 +1,33 @@
+
+.markdown-body pre {
+  background-color: #2d2d2d; /* 深色主题举例 */
+  color: #f8f8f2;
+  padding: 0px;
+  border-radius: 8px;
+  overflow: auto;
+  max-width: 100%; /* 关键！！！让 pre 不超过父容器宽度 */
+  box-sizing: border-box; /* 防止padding撑大 */
+}
+
+.markdown-body pre code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  border-radius: 6px;
+  overflow-x: auto;
+  display: block;
+}
+
+.markdown-body code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  background-color: #2d2d2d; /* 适配深色背景的行内代码 */
+  color: #fff;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 90%;
+}
+
+/* 用户发送的内容 */
+.markdown-body-user p{
+  margin: 0px;
+}

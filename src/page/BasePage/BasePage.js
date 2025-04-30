@@ -1,5 +1,5 @@
-import { useEffect } from "react"
-import { Outlet } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { Outlet, useLocation } from "react-router-dom"
 // import { useTranslation } from "react-i18next"
 import Header from "../../component/header/header"
 import Footer from "../../component/footer/footer"
@@ -36,10 +36,46 @@ const GlobalStyle = createGlobalStyle`
 
 const BasePage = () => {
     // const { t } = useTranslation()
+    const [titleIndex, setTitleIndex] = useState(0)
+    const wavePattern = "▁▂▃▄▅▆▇█▇▆▅▄▃▂▁"
+    const defaultTitle = "ZooMEISTER"
+    const location = useLocation()
+    const isAssistantPage = location.pathname === "/assistant"
 
     useEffect(() => {
-        // document.title = t("JIELI_INSTRUMENTS")
-    })
+        // 实现浏览器标签页滚动波浪效果
+        const titleInterval = setInterval(() => {
+            // 创建滚动波浪效果，纯波浪效果，没有文字
+            let waveText = ""
+            for (let i = 0; i < 30; i++) {
+                const charIndex = (titleIndex + i) % wavePattern.length
+                waveText += wavePattern.charAt(charIndex)
+            }
+            
+            // 仅当页面处于活动状态时显示波浪效果
+            if (document.visibilityState === "visible") {
+                document.title = waveText
+            } else {
+                document.title = defaultTitle
+            }
+            
+            setTitleIndex((prevIndex) => (prevIndex + 1) % wavePattern.length)
+        }, 150)
+
+        // 监听页面可见性变化
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === "hidden") {
+                document.title = defaultTitle
+            }
+        }
+        
+        document.addEventListener("visibilitychange", handleVisibilityChange)
+
+        return () => {
+            clearInterval(titleInterval)
+            document.removeEventListener("visibilitychange", handleVisibilityChange)
+        }
+    }, [titleIndex])
 
     return(
         <div style={{backgroundColor: "#1A1A1A"}}>
@@ -47,7 +83,7 @@ const BasePage = () => {
             {/* 内容 */}
             <Header/>
             <Outlet/>
-            <Footer/>
+            {!isAssistantPage && <Footer/>}
         </div>
     )
 }

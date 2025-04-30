@@ -8,7 +8,7 @@ import axios from "axios";
 
 // 游客request，仅用于注册和登录
 const touristRequest = axios.create({
-    baseURL: "http://localhost:3001",
+    baseURL: process.env.REACT_APP_BACKEND_ADDRESS,
     timeout: 5000,
     headers: { 'content-type': 'application/x-www-form-urlencoded' }
 })
@@ -16,11 +16,10 @@ const touristRequest = axios.create({
 // 已登陆用户的request
 // 需要带上jwt token
 const userRequest = axios.create({
-    baseURL: "http://localhost:3001",
+    baseURL: process.env.REACT_APP_BACKEND_ADDRESS,
     timeout: 5000,
     headers: { 'content-type': 'application/x-www-form-urlencoded' }
 })
-
 // 添加请求拦截器
 userRequest.interceptors.request.use((config) => {
     // 在请求发送之前会触发这里
@@ -32,12 +31,11 @@ userRequest.interceptors.request.use((config) => {
 }, (error) => { 
     return Promise.reject(error)
 })
-
 // 添加响应拦截器
 userRequest.interceptors.response.use((response) => {
     // 2XX 范围的状态码会触发这里
     // 对响应做点什么
-    return response.data
+    return response
 }, (error) => {
     // 超出 2XX 范围的状态码会触发这里
     // 对响应做点什么
@@ -46,10 +44,17 @@ userRequest.interceptors.response.use((response) => {
 
 
 
+
+
+
+
+
+
+
 // 已登陆用户的上传文件的request
 // 需要带上jwt token
 const userFileUploadRequest = axios.create({
-    baseURL: "http://localhost:3001",
+    baseURL: process.env.REACT_APP_BACKEND_ADDRESS,
     timeout: 20000,
     headers: { 'content-type': 'multipart/form-data' }
 })
@@ -82,7 +87,7 @@ userFileUploadRequest.interceptors.response.use((response) => {
 // 已登陆用户的下载文件的request
 // 需要带上jwt token
 const userFileDownloadRequest = axios.create({
-    baseURL: "http://localhost:3001",
+    baseURL: process.env.REACT_APP_BACKEND_ADDRESS,
     timeout: 20000,
     headers: { 'content-type': 'application/x-www-form-urlencoded' },
     responseType: "blob"
