@@ -1,5 +1,6 @@
 {
     "HOME": "主页",
+    "BLOG": "博客",
     "ASSISTANT": "助手",
     "WHO_AM_I": "我是谁",
     "BACKEND_DEVELOPER": "后端开发",
@@ -12,6 +13,11 @@
     "RANK_ON_PERFECTWORLD_AT": "段位 在完美世界竞技平台的",
     "EMAIL": "邮箱",
     "WEBSITE": "网站",
+    "CONTENTS": "目录",
+    "BACK": "返回",
+
+    "TOTAL": "共",
+    "BLOGS": "篇",
 
     "USER": "用户",
     "USERNAME": "用户名",

@@ -19,6 +19,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import { useTranslation } from 'react-i18next';
 
+import MyAvatar from "../../assest/avatar.jpg"
+
 // 自定义样式组件
 const ProfileAvatar = styled(Avatar)(({ theme }) => ({
     width: 120,
@@ -113,7 +115,7 @@ const MyProfileCard = ({ open, onClose }) => {
             <DialogContent sx={{ px: isMobile ? 2 : 3, py: isMobile ? 2 : 3 }}>
                 <Grid container spacing={isMobile ? 2 : 3} sx={{width: '100%'}}>
                     <Grid item xs={12} md={4} sx={{ textAlign: 'center', minWidth: isMobile ? "100%" : "30%" }}>
-                        <ProfileAvatar src="/path/to/avatar.jpg" alt="个人头像" />
+                        <ProfileAvatar src={MyAvatar} alt="个人头像" />
                         <Typography variant={isMobile ? "subtitle1" : "h6"} sx={{ fontWeight: 'bold', mb: 1 }}>
                             ZOOMEISTER
                         </Typography>

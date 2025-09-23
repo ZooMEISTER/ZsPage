@@ -22,7 +22,7 @@ const AVAILABLE_MODELS = [
     // { id: 'gpt-4o-mini', name: 'GPT-4o Mini' },
     { id: 'deepseek-chat', name: 'DeepSeek-V3' },
     { id: 'deepseek-reasoner', name: 'DeepSeek-R1' },
-    { id: 'gpt-4o', name: 'GPT-4o' },
+    // { id: 'gpt-4o', name: 'GPT-4o' },
 ];
 
 const AssistantPage = () => {

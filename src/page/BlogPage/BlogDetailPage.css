@@ -1,0 +1,259 @@
+
+/* —— 新增：正文文本为白色 —— */
+.markdown-body {
+    color: #f5f5f5;      /* 正文文字颜色 */
+    line-height: 1.75;
+    word-break: break-word;
+  }
+
+.markdown-body pre {
+    background-color: #2d2d2d; /* 深色主题举例 */
+    color: #f8f8f2;
+    padding: 0px;
+    border-radius: 8px;
+    overflow: auto;
+    max-width: 100%; /* 关键！！！让 pre 不超过父容器宽度 */
+    box-sizing: border-box; /* 防止padding撑大 */
+  }
+  
+  .markdown-body pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    border-radius: 6px;
+    overflow-x: auto;
+    display: block;
+  }
+  
+  .markdown-body code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    background-color: #2d2d2d; /* 适配深色背景的行内代码 */
+    color: #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 90%;
+  }
+  
+  /* 用户发送的内容 */
+  .markdown-body p{
+    white-space: pre-wrap;       /* 保留空白符并允许换行 */
+    word-wrap: break-word;       /* 允许长单词断行 */
+    overflow-wrap: break-word;   /* 现代浏览器的断行属性 */
+  }
+  
+  /* 用户发送的内容 */
+  .markdown-body-user p{
+    margin: 0px;
+  }
+
+  /* —— 新增：图片不能太宽 —— */
+.markdown-body img {
+    max-width: 100%;   /* 限制图片最大宽度不超过容器 */
+    height: auto;
+    display: block;
+    margin: 12px 0;
+    border-radius: 6px;
+  }
+  
+  /* 段落换行、断行保持 */
+  .markdown-body p {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* 超链接 */
+  .markdown-body a {
+    color: #ff8c00;
+  }
+
+  /* —— 表格样式（支持深色背景） —— */
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin: 16px 0;
+}
+
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid #555;         /* 给表格添加边框 */
+  padding: 8px 12px;
+  text-align: left;
+  color: #f5f5f5;                  /* 保证深色背景下文字可见 */
+}
+
+.markdown-body thead {
+  background-color: #333;          /* 表头背景 */
+}
+
+.markdown-body tbody tr:nth-child(even) {
+  background-color: #2a2a2a;       /* 斑马纹 */
+}
+
+.markdown-body tbody tr:hover {
+  background-color: #3a3a3a;       /* hover 效果 */
+}
+
+/* 分隔线样式 */
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid #444; /* 细线 */
+  opacity: 0.7;
+}
+
+/* 引用块样式 */
+.markdown-body blockquote {
+  border-left: 4px solid #ff8b00;      /* 左边橙色竖线 */
+  background-color: #2a2a2a;           /* 深灰背景 */
+  color: #f5f5f5;                      /* 文字颜色 */
+  padding: 12px 16px;
+  margin: 20px 0;
+  border-radius: 6px;
+}
+
+.markdown-body blockquote p {
+  margin: 0;   /* 去掉默认外边距，避免撑开 */
+}
+
+
+/* 调整正文 markdown 标题字号、行距、颜色 */
+.markdown-body h1 {
+  font-size: 2.2em;
+  color: #ff8b00;
+  margin: 1.2em 0 0.6em;
+  line-height: 1.3;
+}
+
+.markdown-body h2 {
+  font-size: 1.8em;
+  color: #ff8b00;
+  margin: 1.1em 0 0.5em;
+  line-height: 1.35;
+}
+
+.markdown-body h3 {
+  font-size: 1.4em;
+  color: #ff8b00;
+  margin: 1em 0 0.4em;
+  line-height: 1.4;
+}
+
+.markdown-body h4 {
+  font-size: 1.2em;
+  color: #ff8b00;
+  margin: 0.9em 0 0.3em;
+  line-height: 1.4;
+}
+
+.markdown-body h5 {
+  font-size: 1.05em;
+  color: #ff8b00;
+  margin: 0.8em 0 0.3em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #ff8b00;
+  margin: 0.7em 0 0.3em;
+}
+
+
+
+
+
+
+
+  /* 固定在右侧；在 992px 以下你已用 isMobile 隐藏了 */
+.toc-fixed {
+    position: fixed;
+    top: 85px;              /* 距离顶部，避开你的导航栏 */
+    right: 24px;             /* 右边距，视口内贴右侧 */
+    z-index: 10;
+  }
+  
+  /* 目录卡片风格 */
+  .toc-card {
+    width: 260px;
+    max-height: calc(100vh - 140px);
+    overflow: auto;
+    background: #222;
+    border: 1px solid #333;
+    border-top: 2px solid #FF0000;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    padding: 12px 12px 8px;
+  }
+  
+  /* 标题 */
+  .toc-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  
+  /* 列表 */
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .toc-item {
+    margin: 6px 0;
+    line-height: 1.4;
+  }
+  
+  .toc-item a {
+    color: #bbb;
+    text-decoration: none;
+    display: inline-block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color .15s ease, transform .15s ease;
+  }
+  
+
+  /* level-0 作为文章标题目录项 */
+  .toc-item.level-0 a {
+    padding-left: 0;
+    font-weight: 700;
+    font-size: 1em;
+    color: #ff8b00;
+    margin-bottom: 6px;
+    display: block;
+    border-bottom: 1px solid #333; /* 可选，和下面分隔开 */
+    padding-bottom: 4px;
+  }
+
+  .toc-item.level-0 a:hover {
+    color: #fff;
+  }
+
+  /* 缩进层级（h1/h2/h3） */
+  .toc-item.level-1 a { padding-left: 0;   font-weight: 600; }
+  .toc-item.level-2 a { padding-left: 12px; font-size: 0.95em; }
+  .toc-item.level-3 a { padding-left: 24px; font-size: 0.9em;  }
+  .toc-item.level-4 a { padding-left: 36px; font-size: 0.88em; }
+  .toc-item.level-5 a { padding-left: 48px; font-size: 0.86em; }
+  .toc-item.level-6 a { padding-left: 60px; font-size: 0.84em; }
+  
+  /* 悬停与激活 */
+  .toc-item a:hover {
+    color: #fff;
+    transform: translateX(2px);
+  }
+  
+  .toc-item.active > a {
+    color: #FF0000;
+    font-weight: 700;
+  }
+  
+  /* 小屏隐藏（兜底，主要还是在组件里用 isMobile 控制） */
+  @media (max-width: 992px) {
+    .toc-fixed { display: none; }
+  }
+  

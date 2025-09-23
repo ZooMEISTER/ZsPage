@@ -1,5 +1,6 @@
 {
     "HOME": "HOME",
+    "BLOG": "BLOG",
     "ASSISTANT": "ASSISTANT",
     "WHO_AM_I": "WHO AM I",
     "BACKEND_DEVELOPER": "BACKEND DEVELOPER",
@@ -12,6 +13,11 @@
     "RANK_ON_PERFECTWORLD_AT": "RANK on PerfectWorld Arena at",
     "EMAIL": "EMAIL",
     "WEBSITE": "WEBSITE",
+    "CONTENTS": "Contents",
+    "BACK": "Back",
+
+    "TOTAL": "Total",
+    "BLOGS": "Blogs",
 
     "USER": "USER",
     "USERNAME": "Username",

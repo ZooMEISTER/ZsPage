@@ -114,6 +114,10 @@ const Header = () => {
             link: "/"
         },
         {
+            title: "BLOG",
+            link: "/blog"
+        },
+        {
             title: "ASSISTANT",
             link: "/assistant"
         }
@@ -299,7 +303,7 @@ const Header = () => {
                                 borderBottom: '1px solid rgba(255,255,255,0.1)',
                                 py: 1.5
                             }}>
-                                <ListItemText primary={i18n.language === 'zh-CN' ? '切换到英文' : 'Switch to Chinese'} />
+                                <ListItemText primary={i18n.language === 'zh-CN' ? 'Switch to English' : '切换到中文'} />
                                 <LanguageIcon sx={{ ml: 1 }} />
                             </ListItem>
                         </List>
